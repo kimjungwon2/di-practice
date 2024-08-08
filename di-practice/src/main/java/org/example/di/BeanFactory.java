@@ -51,4 +51,13 @@ public class BeanFactory {
     public <T> T getBean(Class<T> requiredType) {
         return (T) beans.get(requiredType);
     }
+
+    private Object getParameterByClass(Class<?> typeClass) {
+        Object instanceBean = getBean(typeClass);
+        if(Objects.nonNull(instanceBean)) {
+            return instanceBean;
+        }
+
+        return createInstance(typeClass);
+    }
 }
